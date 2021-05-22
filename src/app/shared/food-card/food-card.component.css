@@ -1,0 +1,28 @@
+mat-card.food-card {
+  width: 200px !important;
+  height: 250px !important;
+  margin: 10px !important;
+  padding: 10px !important;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+mat-card-content svg {
+  width: 5em;
+}
+
+mat-card-content h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  font-family: var(--theme-font);
+  letter-spacing: -0.09em;
+}

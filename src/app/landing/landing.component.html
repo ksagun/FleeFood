@@ -1,0 +1,57 @@
+<!-- <div class="landing-section" *ngIf="0">
+  <div class="background">
+    <img src="../../assets/imgs/pexels-adonyi-gábor-1414651 1.png" alt="" />
+  </div>
+
+  <div class="search-location-wrapper">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search location"
+        [(ngModel)]="myLocation"
+      />
+      <mat-icon
+        style="color: var(--theme-color)"
+        class="clickable"
+        (click)="getCurrentLocation()"
+        >gps_fixed</mat-icon
+      >
+    </div>
+    <button mat-raised-button color="primary" class="ff-flat-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="near-store-section" *ngIf="0">
+  <p class="ff-label" style="font-size: 2em; margin: 50px 0 50px 0">
+    Find great foods near you!
+  </p>
+  <div class="merchant-container">
+    <mat-progress-bar
+      mode="indeterminate"
+      *ngIf="locationLoading | async"
+    ></mat-progress-bar>
+    <div class="location-header">
+      <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
+      <p class="ff-label" style="font-size: 1.5em">
+        Find food places near {{ myLocation }}
+      </p>
+    </div>
+
+    <div class="merchants">
+      <div class="merchant-list" *ngFor="let merchant of merchants">
+        <food-card [data]="merchant"></food-card>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="food-stash-section">
+  <food-stash-card
+    [location]="myLocation"
+    [isLoading]="locationLoading"
+    [foodStash$]="foodStash"
+    [stashLoading]="stashLoading"
+  ></food-stash-card>
+</div>

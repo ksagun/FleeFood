@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --theme-color: #ecc61a;
+  --theme-font: "Josefin Sans", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::ng-deep .custom-dialog > mat-dialog-container {
+  background-color: red;
+}
+
+.primary-button {
+  background-color: #ecc61a;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  padding: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.theme-font {
+  font-family: var(--theme-font);
+}
+
+.ff-header-label {
+  font-family: var(--theme-font);
+  font-weight: 600;
+  letter-spacing: -0.09em;
+}
+
+.ff-label {
+  font-family: var(--theme-font);
+  font-weight: 600;
+  letter-spacing: -0.09em;
+}
+
+.ff-logo {
+  font-family: var(--theme-font);
+  font-weight: 600;
+  letter-spacing: -0.15em;
+  color: var(--theme-color);
+}
+
+.ff-flat-card {
+  box-shadow: none !important;
+  border: 1px solid #ebebeb;
+  border-radius: 10px !important;
+}
+
+.ff-flat-button {
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}
+
+.ff-flat-button-square {
+  box-shadow: none !important;
+  border-radius: 5px !important;
+}
+
+.mat-button,
+.mat-raised-button {
+  border-radius: 25px !important;
+}
+
+.clickable {
+  cursor: pointer;
+}

@@ -1,0 +1,56 @@
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="isLoading | async"
+></mat-progress-bar>
+<div
+  class="login-wrapper"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  style="height: 100vh"
+>
+  <mat-card
+    class="ff-flat-card"
+    fxLayout="column"
+    fxLayoutAlign="center"
+    style="width: 400px"
+  >
+    <mat-card-title
+      class="ff-header-label"
+      style="padding: 5px; margin-bottom: 20px"
+    >
+      Login with
+      <span class="ff-logo">FleeFood</span>
+    </mat-card-title>
+
+    <mat-card-content>
+      <form
+        action=""
+        fxLayout="column"
+        fxLayoutGap="10px"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" />
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          class="ff-label ff-flat-button"
+          [disabled]="form.invalid"
+        >
+          LOGIN
+        </button>
+        <a href="" fxLayoutAlign="center">Forgot password?</a>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

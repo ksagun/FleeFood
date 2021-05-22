@@ -1,0 +1,71 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ff-theme: (
+ 50:#FFFDE7,
+100:#FFF9C4,
+200:#FFF59D,
+300:#FFF176,
+400:#FFEE58,
+500:#FFEB3B,
+600:#FDD835,
+700:#FBC02D,
+800:#F9A825,
+900:#F57F17,
+A100:#FFFF8D,
+A200:#FFFF00,
+A400:#FFEA00,
+A700:#FFD600,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+
+
+
+$fleefood-primary: mat-palette($ff-theme, 600);
+$fleefood-accent: mat-palette($ff-theme, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$fleefood-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$fleefood-theme: mat-light-theme((
+  color: (
+    primary: $fleefood-primary,
+    accent: $fleefood-accent,
+    warn: $fleefood-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($fleefood-theme);
+
