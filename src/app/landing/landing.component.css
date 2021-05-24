@@ -135,13 +135,54 @@
 
 .food-stash-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.food-stash-section .instruction p {
+  font-size: 1.7em;
+  padding: 10px;
+  text-align: center;
+  font-family: var(--theme-font);
 }
 
 .landing-event-section {
   height: 100vh;
   background-color: var(--theme-color);
-  display: flex;
   padding: 10px;
+}
+
+.notice-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notice-content {
+  background-color: #ffffff;
+  max-width: 900px;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: var(--theme-font);
+}
+
+.notice-content h3 {
+  font-size: 2.5em;
+  font-family: var(--theme-font);
+  text-align: center;
+}
+
+.notice-content p {
+  line-height: 1em;
+  letter-spacing: 0.01em;
+  font-size: 2em;
+  text-align: center;
+}
+
+.landing-event-section .notice-section img {
+  max-width: 200px;
 }
