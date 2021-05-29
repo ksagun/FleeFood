@@ -148,41 +148,121 @@
 }
 
 .landing-event-section {
-  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
   background-color: var(--theme-color);
+  padding: 10px;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+section.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+section.left .content {
+  display: flex;
+  flex-direction: column;
+}
+
+section.left span {
+  font-size: 100px;
+  margin: 0 10px 40px 10px;
+}
+
+section.left button {
+  background-color: #5cb539;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  font-size: 20px;
+  font-family: var(--theme-font);
+}
+
+section.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  flex: 1;
   padding: 10px;
 }
 
-.notice-section {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+section.right p {
+  align-self: start;
+  font-size: 50px;
+  color: #ffffff;
+  font-family: var(--theme-font);
+  text-align: left;
+  line-height: 50px;
+  letter-spacing: -0.1em;
 }
 
-.notice-content {
+section.right .img-container {
+  align-self: flex-end;
   background-color: #ffffff;
-  max-width: 900px;
-  border-radius: 15px;
   padding: 20px;
-  font-family: var(--theme-font);
+  border-radius: 100%;
+  width: 320px;
+  position: absolute;
+  bottom: -50px;
+  right: -20px;
+  overflow: hidden;
 }
 
-.notice-content h3 {
-  font-size: 2.5em;
-  font-family: var(--theme-font);
-  text-align: center;
+section.right .img-container img {
+  max-width: 100%;
 }
 
-.notice-content p {
-  line-height: 1em;
-  letter-spacing: 0.01em;
-  font-size: 2em;
-  text-align: center;
+@media only screen and (max-width: 600px) {
+  section.right {
+    justify-content: flex-start;
+  }
+
+  section.right p {
+    font-size: 20px;
+  }
+
+  .landing-event-section {
+    flex-direction: column;
+  }
+
+  section.right .img-container {
+    width: 200px;
+  }
+
+  section.right p {
+    text-align: center;
+    line-height: 20px;
+  }
 }
 
-.landing-event-section .notice-section img {
-  max-width: 200px;
+@media only screen and (max-width: 768px) {
+  section.right {
+    justify-content: flex-start;
+  }
+
+  section.right p {
+    font-size: 20px;
+  }
+
+  .landing-event-section {
+    flex-direction: column;
+  }
+
+  section.right .img-container {
+    width: 200px;
+  }
+
+  section.right p {
+    text-align: center;
+    line-height: 20px;
+  }
 }
