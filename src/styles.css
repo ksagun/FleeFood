@@ -4,6 +4,12 @@
   --theme-font: "Josefin Sans", sans-serif;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -52,6 +58,13 @@ dialog::backdrop {
   font-weight: 600;
   letter-spacing: -0.15em;
   color: var(--theme-color);
+}
+
+.ff-logo-white {
+  font-family: var(--theme-font);
+  font-weight: 600;
+  letter-spacing: -0.15em;
+  color: #ffffff;
 }
 
 .ff-flat-card {
