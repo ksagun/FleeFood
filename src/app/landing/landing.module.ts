@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
+import { NgxSmoothScrollModule } from '@eunsatio/ngx-smooth-scroll';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     MatProgressBarModule,
     FormsModule,
+    NgxSmoothScrollModule,
   ],
 })
 export class LandingModule {}

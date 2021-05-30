@@ -1,4 +1,4 @@
-.mat-card {
+/* .mat-card {
   display: flex;
   flex-direction: column;
   max-width: 800px !important;
@@ -86,5 +86,175 @@ form button {
   .address,
   .reason {
     flex-wrap: wrap;
+  }
+} */
+
+.food-stash-container {
+  display: flex;
+  margin-top: 50px;
+}
+
+.stash-instruction {
+  width: 100%;
+}
+
+.stash-instruction img {
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.food-card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.food-card-header {
+  width: 100%;
+  display: flex;
+  align-self: center;
+  background-color: #ffffff;
+  box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -webkit-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+  font-family: var(--theme-font);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.1em;
+  color: #565656;
+}
+
+.food-card-content {
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -webkit-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+}
+
+.food-card-form {
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -webkit-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: -1px 2px 11px 1px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+}
+
+.food-img {
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.food-img img {
+  width: 100%;
+  border-radius: 5px 5px 0px 0;
+}
+
+.food-details {
+  flex-basis: 100%;
+  flex: 2;
+  padding: 10px;
+}
+
+.food-details .stash-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.host {
+  display: flex;
+}
+
+.start,
+.end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--theme-color);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.start p,
+.end p {
+  color: #ffffff;
+  font-family: var(--theme-font);
+  background-color: var(--theme-color);
+  width: 100%;
+  text-align: center;
+}
+
+.food-card-form {
+  width: 100%;
+}
+
+form {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+form button {
+  width: 100%;
+  font-family: var(--theme-font);
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.name,
+.contact,
+.address,
+.reason {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-basis: 100%;
+}
+
+.name input,
+.contact input,
+.address input,
+.reason input {
+  width: 100%;
+}
+
+.mat-form-field {
+  margin: 10px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .name,
+  .contact,
+  .address,
+  .reason {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .food-stash-container {
+    flex-direction: column;
+  }
+
+  .food-card-content {
+    flex-direction: column;
   }
 }
