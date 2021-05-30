@@ -6,79 +6,68 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<mat-card class="ff-flat-card" *ngFor="let fs of foodStash$">
-  <mat-card-header>
-    <mat-card-title>
-      <span class="ff-logo">FoodStash</span>
-      <mat-card-subtitle>
-        <h3 *ngIf="isLoading | async">Searching for nearest food stash...</h3>
-        <h3 style="margin-top: 10px">
-          <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
-          {{ location }}
-        </h3>
-      </mat-card-subtitle>
-    </mat-card-title>
-  </mat-card-header>
+<div class="food-stash-container">
+  <div class="stash-instruction">
+    <img
+      mat-card-image
+      src="../../../assets/imgs/FoodStash-instruction.png"
+      alt=""
+    />
+  </div>
 
-  <img mat-card-image [src]="fs.food_image" alt="" />
-  <mat-card-content>
-    <h1 class="ff-label">{{ fs.food_package_name }}</h1>
-    <p>
-      {{ fs.food_package_details }}
-    </p>
-
-    <div class="stash-details">
-      <ul>
-        <li>
-          <div class="label">
-            <span>Start Date</span>
-            <mat-icon style="color: var(--theme-color)"
-              >calendar_today</mat-icon
-            >
-          </div>
-
-          <div class="details">
-            <span>{{ fs.start_date | date: "dd/MM/yyyy" }}</span>
-          </div>
-        </li>
-        <li>
-          <div class="label">
-            <span>End Date</span>
-            <mat-icon style="color: var(--theme-color)">today</mat-icon>
-          </div>
-
-          <div class="details">
-            <span>{{ fs.end_date | date: "dd/MM/yyyy" }}</span>
-          </div>
-        </li>
-        <li>
-          <div class="label">
-            <span>Contact</span>
-            <mat-icon style="color: var(--theme-color)">call</mat-icon>
-          </div>
-
-          <div class="details">
-            <span>{{ fs.contact }}</span>
-          </div>
-        </li>
-        <li>
-          <div class="label">
-            <span>Organizer</span>
-            <mat-icon style="color: var(--theme-color)"
-              >account_circle</mat-icon
-            >
-          </div>
-
-          <div class="details">
-            <span>{{ fs.firstname + " " + fs.lastname }}</span>
-          </div>
-        </li>
-      </ul>
+  <div class="food-card-container card" *ngFor="let fs of foodStash$">
+    <div class="food-card-header card">
+      <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
+      <span>{{
+        location.length > 40 ? (location | slice: 0:40) + "..." : location
+      }}</span>
     </div>
 
-    <div class="form" *ngIf="fs.is_available">
-      <h3>Please fill the form to join</h3>
+    <div class="food-card-content card">
+      <div class="food-img">
+        <img mat-card-image [src]="fs.food_image" alt="" />
+      </div>
 
+      <div class="food-details">
+        <h3>{{ fs.food_package_name }}</h3>
+        <p>
+          {{ fs.food_package_details }}
+        </p>
+        <div class="stash-info">
+          <div class="date">
+            <div class="start">
+              <p>START</p>
+              <mat-icon style="color: var(--theme-color)"
+                >calendar_today</mat-icon
+              >
+              <span>{{ fs.start_date | date: "dd/MM/yyyy" }}</span>
+            </div>
+
+            <div class="end">
+              <p>END</p>
+              <mat-icon style="color: var(--theme-color)">today</mat-icon>
+              <span>{{ fs.end_date | date: "dd/MM/yyyy" }}</span>
+            </div>
+          </div>
+
+          <div class="host">
+            <div class="contact">
+              <mat-icon style="color: var(--theme-color)">call</mat-icon>
+              <span>{{ fs.contact }}</span>
+            </div>
+
+            <div class="org">
+              <mat-icon style="color: var(--theme-color)"
+                >account_circle</mat-icon
+              >
+              <span>{{ fs.firstname + " " + fs.lastname }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card-form card">
       <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
         <div class="name">
           <mat-form-field appearance="outline">
@@ -147,5 +136,161 @@
         </button>
       </form>
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>
+
+<!-- <ng-container *ngIf="foodStash$ && foodStash$.error">
+  <section style="height: 100vh; display: flex; align-items: center">
+    No available stash in your area.
+  </section>
+</ng-container>
+
+<ng-container *ngIf="foodStash$ && !foodStash$.error">
+  <mat-card class="ff-flat-card" *ngFor="let fs of foodStash$">
+    <mat-card-header>
+      <mat-card-title>
+        <span class="ff-logo">FoodStash</span>
+        <mat-card-subtitle>
+          <h3 *ngIf="isLoading | async">Searching for nearest food stash...</h3>
+          <h3 style="margin-top: 10px">
+            <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
+            {{ location }}
+          </h3>
+        </mat-card-subtitle>
+      </mat-card-title>
+    </mat-card-header>
+
+    <img mat-card-image [src]="fs.food_image" alt="" />
+    <mat-card-content>
+      <h1 class="ff-label">{{ fs.food_package_name }}</h1>
+      <p>
+        {{ fs.food_package_details }}
+      </p>
+
+      <div class="stash-details">
+        <ul>
+          <li>
+            <div class="label">
+              <span>Start Date</span>
+              <mat-icon style="color: var(--theme-color)"
+                >calendar_today</mat-icon
+              >
+            </div>
+
+            <div class="details">
+              <span>{{ fs.start_date | date: "dd/MM/yyyy" }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="label">
+              <span>End Date</span>
+              <mat-icon style="color: var(--theme-color)">today</mat-icon>
+            </div>
+
+            <div class="details">
+              <span>{{ fs.end_date | date: "dd/MM/yyyy" }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="label">
+              <span>Contact</span>
+              <mat-icon style="color: var(--theme-color)">call</mat-icon>
+            </div>
+
+            <div class="details">
+              <span>{{ fs.contact }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="label">
+              <span>Organizer</span>
+              <mat-icon style="color: var(--theme-color)"
+                >account_circle</mat-icon
+              >
+            </div>
+
+            <div class="details">
+              <span>{{ fs.firstname + " " + fs.lastname }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form" *ngIf="fs.is_available">
+        <h3>Please fill the form to join</h3>
+
+        <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
+          <div class="name">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Firstname"
+                formControlName="firstname"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Lastname"
+                formControlName="lastname"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="contact">
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Email" formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Contact" formControlName="contact" />
+              <mat-hint>Mobile or Telephone number</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="address">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Address Line 1"
+                formControlName="address1"
+              />
+              <mat-hint>Street, block and lot details</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Address Line 2"
+                formControlName="address2"
+              />
+              <mat-hint>City and municipality</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="reason">
+            <mat-form-field appearance="outline">
+              <mat-label>Reason for submitting entry</mat-label>
+              <textarea
+                matInput
+                formControlName="reason"
+                placeholder="Reason"
+                style="height: 7em"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="ff-flat-button"
+            [disabled]="form.invalid"
+          >
+            Submit entry
+          </button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container> -->

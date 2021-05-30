@@ -183,6 +183,7 @@ section.left button {
   border: none;
   font-size: 20px;
   font-family: var(--theme-font);
+  cursor: pointer;
 }
 
 section.right {
@@ -203,6 +204,7 @@ section.right p {
   text-align: left;
   line-height: 50px;
   letter-spacing: -0.1em;
+  max-width: 500px;
 }
 
 section.right .img-container {
@@ -245,24 +247,28 @@ section.right .img-container img {
 }
 
 @media only screen and (max-width: 768px) {
-  section.right {
-    justify-content: flex-start;
-  }
-
-  section.right p {
-    font-size: 20px;
-  }
-
   .landing-event-section {
     flex-direction: column;
   }
 
-  section.right .img-container {
-    width: 200px;
+  section.left .content span.ff-logo-white {
+    font-size: 70px;
+  }
+
+  section.right {
+    justify-content: flex-start;
+    align-items: center;
+    flex: 2;
   }
 
   section.right p {
+    align-self: center;
+    font-size: 30px;
     text-align: center;
-    line-height: 20px;
+    line-height: 30px;
+  }
+
+  section.right .img-container {
+    width: 200px;
   }
 }
