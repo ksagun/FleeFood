@@ -49,8 +49,12 @@ export class LandingComponent implements OnInit {
       this.location$.getLocation$.subscribe((s) => {
         if (s) {
           this.myLocation = s.display_name;
-
-          this.getFoodStash('salawag');
+          if (s.address.city_district) {
+            this.getFoodStash(s.address.city_district);
+          } else {
+            //this.getFoodStash(s.address.city);
+            this.getFoodStash('Salawag');
+          }
         }
       });
     });
