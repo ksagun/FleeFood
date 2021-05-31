@@ -1,12 +1,12 @@
-<mat-dialog-content
-  ><span class="ff-label" style="font-size: 2em; padding: 10px">{{
-    data.success
-  }}</span>
-  <mat-icon style="color: var(--theme-color)">check_circle</mat-icon>
-  <p>
-    {{ data.subdetails }}
-  </p></mat-dialog-content
->
+<mat-dialog-content>
+  <ng-container>
+    <span class="ff-label" style="font-size: 2em; padding: 10px">{{
+      data.caption
+    }}</span>
+    <!-- <mat-icon style="color: var(--theme-color)">check_circle</mat-icon> -->
+    <p>{{ data.subdetails }}</p>
+  </ng-container>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button
     mat-button
@@ -15,7 +15,7 @@
     color="primary"
     class="ff-label ff-flat-button"
   >
-    Ok
+    CLOSE
   </button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
   <!-- <button mat-button [mat-dialog-close]="true">Delete</button> -->

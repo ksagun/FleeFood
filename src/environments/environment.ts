@@ -7,6 +7,7 @@ export const environment = {
 };
 
 export const baseUrl = `https://api.fleefood.com/`;
+//export const baseUrl = `http://localhost/fleefood/api/`;
 
 /*
  * For easier debugging in development mode, you can import the following file
