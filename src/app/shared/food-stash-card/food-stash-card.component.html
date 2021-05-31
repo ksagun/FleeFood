@@ -1,8 +1,4 @@
-<div
-  class="preloader-screen"
-  *ngIf="isLoading | async"
-  style="height: 100vh; display: flex; align-items: center"
->
+<div class="preloader-screen" *ngIf="isLoading | async">
   <mat-spinner></mat-spinner>
 </div>
 
@@ -29,7 +25,13 @@
       </div>
 
       <div class="food-details">
-        <h3>{{ fs.food_package_name }}</h3>
+        <div class="food-availability">
+          <h3>{{ fs.food_package_name }}</h3>
+          <mat-icon style="color: #5cb539; margin-left: 10px"
+            >check_circle</mat-icon
+          >
+        </div>
+
         <p>
           {{ fs.food_package_details }}
         </p>
