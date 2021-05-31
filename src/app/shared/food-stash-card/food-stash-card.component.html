@@ -11,121 +11,148 @@
     />
   </div>
 
-  <div class="food-card-container card" *ngFor="let fs of foodStash$">
-    <div class="food-card-header card">
-      <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
-      <span>{{
-        location.length > 40 ? (location | slice: 0:40) + "..." : location
-      }}</span>
-    </div>
+  <ng-container *ngIf="foodStash$ && foodStash$.error">
+    <section
+      style="
+        height: 100vh;
+        width: 100%;
+        background-color: #ffffff;
+        border: 1px solid #e2e2e2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 20px;
+        font-family: var(--theme-font);
+        margin-bottom: 50px;
+      "
+    >
+      No available stash in your area.
+    </section>
+  </ng-container>
 
-    <div class="food-card-content card">
-      <div class="food-img">
-        <img mat-card-image [src]="fs.food_image" alt="" />
+  <ng-container *ngIf="foodStash$ && !foodStash$.error">
+    <div class="food-card-container card" *ngFor="let fs of foodStash$">
+      <div class="food-card-header card">
+        <mat-icon style="color: #e82354" class="clickable">place</mat-icon>
+        <span>{{
+          location.length > 40 ? (location | slice: 0:40) + "..." : location
+        }}</span>
       </div>
 
-      <div class="food-details">
-        <div class="food-availability">
-          <h3>{{ fs.food_package_name }}</h3>
-          <mat-icon style="color: #5cb539; margin-left: 10px"
-            >check_circle</mat-icon
+      <div class="food-card-content card">
+        <div class="food-img">
+          <img mat-card-image [src]="fs.food_image" alt="" />
+        </div>
+
+        <div class="food-details">
+          <div class="food-availability">
+            <h3>{{ fs.food_package_name }}</h3>
+            <mat-icon style="color: #5cb539; margin-left: 10px"
+              >check_circle</mat-icon
+            >
+          </div>
+
+          <p>
+            {{ fs.food_package_details }}
+          </p>
+          <div class="stash-info">
+            <ul>
+              <li>
+                <label>START DATE</label>
+                <p>{{ fs.start_date | date: "mediumDate" }}</p>
+              </li>
+
+              <li>
+                <label>END DATE</label>
+                <p>{{ fs.end_date | date: "mediumDate" }}</p>
+              </li>
+
+              <li>
+                <label>HOST</label>
+                <p>{{ fs.firstname + " " + fs.lastname }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card-form card">
+        <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
+          <div class="name">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Firstname"
+                formControlName="firstname"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Lastname"
+                formControlName="lastname"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="contact">
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Email" formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Contact" formControlName="contact" />
+              <mat-hint>Mobile or Telephone number</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="address">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Address Line 1"
+                formControlName="address1"
+              />
+              <mat-hint>Street, block and lot details</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                placeholder="Address Line 2"
+                formControlName="address2"
+              />
+              <mat-hint>City and municipality</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="reason">
+            <mat-form-field appearance="outline">
+              <mat-label>Reason for submitting entry</mat-label>
+              <textarea
+                matInput
+                formControlName="reason"
+                placeholder="Reason"
+                style="height: 7em"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="ff-flat-button"
+            [disabled]="form.invalid"
           >
-        </div>
-
-        <p>
-          {{ fs.food_package_details }}
-        </p>
-        <div class="stash-info">
-          <ul>
-            <li>
-              <label>START DATE</label>
-              <p>{{ fs.start_date | date: "mediumDate" }}</p>
-            </li>
-
-            <li>
-              <label>END DATE</label>
-              <p>{{ fs.end_date | date: "mediumDate" }}</p>
-            </li>
-
-            <li>
-              <label>HOST</label>
-              <p>{{ fs.firstname + " " + fs.lastname }}</p>
-            </li>
-          </ul>
-        </div>
+            Submit entry
+          </button>
+        </form>
       </div>
     </div>
-
-    <div class="food-card-form card">
-      <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
-        <div class="name">
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Firstname"
-              formControlName="firstname"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Lastname" formControlName="lastname" />
-          </mat-form-field>
-        </div>
-
-        <div class="contact">
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Email" formControlName="email" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Contact" formControlName="contact" />
-            <mat-hint>Mobile or Telephone number</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <div class="address">
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Address Line 1"
-              formControlName="address1"
-            />
-            <mat-hint>Street, block and lot details</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              placeholder="Address Line 2"
-              formControlName="address2"
-            />
-            <mat-hint>City and municipality</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <div class="reason">
-          <mat-form-field appearance="outline">
-            <mat-label>Reason for submitting entry</mat-label>
-            <textarea
-              matInput
-              formControlName="reason"
-              placeholder="Reason"
-              style="height: 7em"
-            ></textarea>
-          </mat-form-field>
-        </div>
-
-        <button
-          mat-raised-button
-          color="primary"
-          class="ff-flat-button"
-          [disabled]="form.invalid"
-        >
-          Submit entry
-        </button>
-      </form>
-    </div>
-  </div>
+  </ng-container>
 </div>
 
 <!-- <ng-container *ngIf="foodStash$ && foodStash$.error">
