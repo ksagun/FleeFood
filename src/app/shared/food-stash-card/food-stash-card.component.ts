@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   FormBuilder,
   FormControl,
@@ -32,6 +32,8 @@ export class FoodStashCardComponent implements OnInit {
 
   entrySubmitted$!: any;
 
+  sub!: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private location$: LocationFacadeService,
@@ -58,18 +60,34 @@ export class FoodStashCardComponent implements OnInit {
     this.form.value['stashid'] = id;
     this.location$.submitFoodStashEntry(this.form.value);
 
-    this.location$.submitEntry$.subscribe((s) => {
+    if (this.sub) this.sub.unsubscribe();
+    this.sub = this.location$.submitEntry$.subscribe((s) => {
       if (s) {
         this.entrySubmitted$ = s.success;
         this.form.reset();
 
         if (s.success) {
-          this.dialogRef.open(SubmitStatusDialogComponent, {
+          let dialog = this.dialogRef.open(SubmitStatusDialogComponent, {
             data: {
-              success: 'Congratulations you submitted an entry!',
+              caption: 'Congratulations you submitted an entry!',
               subdetails:
                 'The organizer will contact you as soon as you are scheduled to get the food stash',
             },
+          });
+          dialog.disableClose = true;
+          dialog.afterClosed().subscribe((s) => {
+            location.reload();
+          });
+        } else {
+          let dialog = this.dialogRef.open(SubmitStatusDialogComponent, {
+            data: {
+              caption: 'Error submitting entry',
+              subdetails: s.msg,
+            },
+          });
+          dialog.disableClose = true;
+          dialog.afterClosed().subscribe((s) => {
+            location.reload();
           });
         }
       }
