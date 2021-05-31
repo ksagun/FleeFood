@@ -223,6 +223,10 @@ section.right .img-container img {
   max-width: 100%;
 }
 
+.food-stash-section {
+  background-color: #fffcec;
+}
+
 @media only screen and (max-width: 600px) {
   section.right {
     justify-content: flex-start;
