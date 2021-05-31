@@ -227,6 +227,24 @@ section.right .img-container img {
   background-color: #fffcec;
 }
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #fffcec;
+  border-bottom: 1px solid #fffcec;
+  padding: 20px;
+  background-color: #414141;
+}
+
+footer span {
+  color: #ffffff;
+  font-size: 30px;
+}
+
+footer span + span {
+  font-size: 15px;
+}
+
 @media only screen and (max-width: 600px) {
   section.right {
     justify-content: flex-start;
