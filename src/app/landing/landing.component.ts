@@ -52,8 +52,8 @@ export class LandingComponent implements OnInit {
           if (s.address.city_district) {
             this.getFoodStash(s.address.city_district);
           } else {
-            //this.getFoodStash(s.address.city);
-            this.getFoodStash('Salawag');
+            this.getFoodStash(s.address.city);
+            //this.getFoodStash('Salawag');
           }
         }
       });
