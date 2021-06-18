@@ -22,13 +22,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 600;
-        font-size: 20px;
         font-family: var(--theme-font);
         margin-bottom: 50px;
       "
     >
-      No available stash in your area.
+      <div
+        class="notice"
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <article style="font-size: 15px">
+          {{ location }}
+        </article>
+        <article style="color: #919191; font-size: 20px; font-weight: 600">
+          No available stash in your area.
+        </article>
+      </div>
     </section>
   </ng-container>
 
@@ -44,6 +57,9 @@
       <div class="food-card-content card">
         <div class="food-img">
           <img mat-card-image [src]="fs.food_image" alt="" />
+          <section class="count">
+            {{ "Participants: " + fs.joined + " / " + fs.quantity }}
+          </section>
         </div>
 
         <div class="food-details">
@@ -78,7 +94,7 @@
         </div>
       </div>
 
-      <div class="food-card-form card">
+      <div class="food-card-form card" *ngIf="fs.joined !== fs.quantity">
         <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
           <div class="name">
             <mat-form-field appearance="outline">
@@ -150,6 +166,12 @@
             Submit entry
           </button>
         </form>
+      </div>
+
+      <div *ngIf="fs.joined === fs.quantity">
+        <section>
+          Food stash ended, wait for the next food stash posting!
+        </section>
       </div>
     </div>
   </ng-container>

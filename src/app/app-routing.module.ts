@@ -21,6 +21,13 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'verification',
+    loadChildren: () =>
+      import('./verification/verification.module').then(
+        (m) => m.VerificationModule
+      ),
+  },
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
 ];
 
