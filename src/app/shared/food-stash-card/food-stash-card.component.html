@@ -22,10 +22,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 600;
+        font-size: 20px;
         font-family: var(--theme-font);
         margin-bottom: 50px;
       "
     >
+<<<<<<< HEAD
       <div
         class="notice"
         style="
@@ -44,6 +47,9 @@
           No available stash in your area.
         </article>
       </div>
+=======
+      No available stash in your area.
+>>>>>>> parent of 29de48b (ffs/module-2: Added verification module, updated foodstash UI)
     </section>
   </ng-container>
 
@@ -59,9 +65,6 @@
       <div class="food-card-content card">
         <div class="food-img">
           <img mat-card-image [src]="fs.food_image" alt="" />
-          <section class="count">
-            {{ "Participants: " + fs.joined + " / " + fs.quantity }}
-          </section>
         </div>
 
         <div class="food-details">
@@ -96,7 +99,7 @@
         </div>
       </div>
 
-      <div class="food-card-form card" *ngIf="fs.joined !== fs.quantity">
+      <div class="food-card-form card">
         <form [formGroup]="form" (ngSubmit)="submitEntry(fs.id)">
           <div class="name">
             <mat-form-field appearance="outline">
@@ -168,12 +171,6 @@
             Submit entry
           </button>
         </form>
-      </div>
-
-      <div *ngIf="fs.joined === fs.quantity">
-        <section>
-          Food stash ended, wait for the next food stash posting!
-        </section>
       </div>
     </div>
   </ng-container>
