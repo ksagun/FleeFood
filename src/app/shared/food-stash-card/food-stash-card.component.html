@@ -36,7 +36,9 @@
         "
       >
         <article style="font-size: 15px">
-          {{ location }}
+          {{
+            location.length > 50 ? (location | slice: 0:50) + "..." : location
+          }}
         </article>
         <article style="color: #919191; font-size: 20px; font-weight: 600">
           No available stash in your area.
