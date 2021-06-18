@@ -173,15 +173,6 @@ form button {
   width: 100%;
   border-radius: 5px 5px 0px 0;
   padding: 10px;
-  margin-bottom: 10px;
-}
-
-.food-img .count {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  font-family: var(--theme-font);
-  font-size: 20px;
 }
 
 .food-details {
