@@ -1,4 +1,4 @@
-<!-- <div class="landing-section" *ngIf="0">
+<div class="landing-section">
   <div class="background">
     <img src="../../assets/imgs/pexels-adonyi-gábor-1414651 1.png" alt="" />
   </div>
@@ -17,13 +17,20 @@
         >gps_fixed</mat-icon
       >
     </div>
-    <button mat-raised-button color="primary" class="ff-flat-button">
-      <mat-icon>search</mat-icon>
-    </button>
+    <a
+      *ngIf="position$"
+      routerLink="/restaurants/{{ searchLocation }}/{{
+        position$.coords.longitude
+      }}/{{ position$.coords.latitude }}"
+    >
+      <button mat-raised-button color="primary" class="ff-flat-button">
+        <mat-icon>search</mat-icon>
+      </button>
+    </a>
   </div>
 </div>
 
-<div class="near-store-section" *ngIf="0">
+<div class="near-store-section">
   <p class="ff-label" style="font-size: 2em; margin: 50px 0 50px 0">
     Find great foods near you!
   </p>
@@ -45,9 +52,9 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<div class="landing-event-section">
+<!-- <div class="landing-event-section">
   <section class="left">
     <div class="content">
       <span class="ff-logo-white">FleeFood</span>
@@ -65,16 +72,16 @@
       <img src="../../assets/imgs/FleeFood - Rider.png" alt="" />
     </div>
   </section>
-</div>
+</div> -->
 
-<div class="food-stash-section">
+<!-- <div class="food-stash-section">
   <food-stash-card
     [location]="myLocation"
     [isLoading]="locationLoading"
     [foodStash$]="foodStash"
     [stashLoading]="stashLoading"
   ></food-stash-card>
-</div>
+</div> -->
 
 <footer>
   <span class="ff-logo">FleeFood</span>

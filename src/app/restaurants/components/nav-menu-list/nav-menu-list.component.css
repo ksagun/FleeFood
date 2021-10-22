@@ -1,0 +1,31 @@
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.menu-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 0px 8px 15px -5px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 8px 15px -5px rgba(0, 0, 0, 0.28);
+}
+
+.category-list {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list {
+  padding: 20px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.list.selected {
+  border-bottom: 4px solid var(--theme-color);
+}

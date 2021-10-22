@@ -14,9 +14,11 @@ export class LandingComponent implements OnInit {
   merchants: any;
   geocode!: string;
   myLocation: any;
+  searchLocation: any;
   locationLoading!: Observable<boolean>;
   foodStash!: Observable<any>;
   stashLoading!: Observable<boolean>;
+  position$: any;
 
   constructor(
     private readonly geolocation$: GeolocationService,
@@ -41,6 +43,8 @@ export class LandingComponent implements OnInit {
 
   getCurrentLocation() {
     this.geolocation$.pipe(take(1)).subscribe((position) => {
+      this.position$ = position;
+
       this.location$.getCurrentLocation(
         position.coords.latitude,
         position.coords.longitude
@@ -49,6 +53,23 @@ export class LandingComponent implements OnInit {
       this.location$.getLocation$.subscribe((s) => {
         if (s) {
           this.myLocation = s.display_name;
+
+          if (s.address.suburb && s.address.city && s.address.state)
+            this.searchLocation =
+              this.urlSegmenter(s.address.suburb) +
+              '-' +
+              s.address.city +
+              '-' +
+              s.address.state;
+          else if (s.address.city_district)
+            this.searchLocation =
+              s.address.city_district +
+              '-' +
+              s.address.city +
+              '-' +
+              s.address.state;
+          else this.searchLocation = s.address.city + '-' + s.address.state;
+
           if (s.address.city_district) {
             this.getFoodStash(s.address.city_district);
           } else {
@@ -68,5 +89,14 @@ export class LandingComponent implements OnInit {
         this.foodStash = s;
       }
     });
+  }
+
+  urlSegmenter(text: string) {
+    if (text.includes(' ')) {
+      var segmented = text.replace(/\s/g, '-');
+      return segmented;
+    }
+
+    return text;
   }
 }

@@ -1,0 +1,53 @@
+<div class="main-wrapper">
+  <header>
+    <div
+      class="banner"
+      *ngIf="restaurantBannerImage"
+      [ngStyle]="{ 'background-image': 'url(' + restaurantBannerImage + ')' }"
+    >
+      <h1 *ngIf="isLoading$ | async">This is a banner</h1>
+    </div>
+  </header>
+  <div class="menu-content">
+    <div class="rest-header">
+      <div class="details" *ngFor="let row of restaurant$ | async">
+        <h1>{{row.restaurant + ' ' + row.municipality}}</h1>
+        <h3>Opens at {{formatTime(row.opening)}} - Closes at {{formatTime(row.closing)}}</h3>
+      </div>
+    </div>
+    <nav-menu-list [menu]="category"></nav-menu-list>
+
+    <div class="menu-list">
+        <ng-container *ngIf="restaurant$">
+          <div
+            class="items"
+            *ngFor="let list of menu"
+          >
+              <mat-card class="food-card">
+                <mat-card-content>
+                  <div class="logo">
+                    <img [src]="list.productImage" alt="" />
+                  </div>
+  
+                  <div class="details">
+                    <p *ngIf="list.itemName" class="ff-label name">
+                      {{ list.itemName }}
+                    </p>
+  
+                    <section>
+                      <span>₱ {{list.itemPrice}}</span>
+                    </section>
+  
+                    <section style="width: 100%; display: flex; justify-content: flex-end;">
+                      <button  
+                      color="primary"
+                      class="ff-flat-button-edge"> <mat-icon>add</mat-icon></button>
+                    </section>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+          </div>
+        </ng-container>
+    </div>
+  </div>
+</div>

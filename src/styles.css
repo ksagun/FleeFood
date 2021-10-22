@@ -13,10 +13,12 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 dialog::backdrop {
@@ -81,6 +83,16 @@ dialog::backdrop {
 .ff-flat-button-square {
   box-shadow: none !important;
   border-radius: 5px !important;
+}
+
+.ff-flat-button-edge {
+  box-shadow: none !important;
+  border-radius: 20px 1px 5px 1px !important;
+  border: none;
+  padding: 5px;
+  background-color: var(--theme-color);
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .mat-button,

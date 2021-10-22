@@ -23,6 +23,13 @@ import { SharedModule } from './shared/shared.module';
 import { LocationReducer } from './state/location/location.reducer';
 import { LocationEffect } from './state/location/location.effect';
 
+declare module '@angular/core' {
+  interface ModuleWithProviders<T = any> {
+    ngModule: Type<T>;
+    providers?: Provider[];
+  }
+}
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [

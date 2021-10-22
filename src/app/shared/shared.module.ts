@@ -6,17 +6,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubmitStatusDialogComponent } from './submit-status-dialog/submit-status-dialog.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     FoodCardComponent,
     FoodStashCardComponent,
     SubmitStatusDialogComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,12 @@ import { SubmitStatusDialogComponent } from './submit-status-dialog/submit-statu
     FoodCardComponent,
     FoodStashCardComponent,
     SubmitStatusDialogComponent,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatIconModule,
+    SearchBarComponent,
+    MatButtonModule
   ],
 })
 export class SharedModule {}

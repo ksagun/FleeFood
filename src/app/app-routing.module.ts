@@ -28,6 +28,14 @@ const routes: Routes = [
         (m) => m.VerificationModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./restaurants/restaurants.module').then(
+        (m) => m.RestaurantsModule
+      ),
+  },
+
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
 ];
 

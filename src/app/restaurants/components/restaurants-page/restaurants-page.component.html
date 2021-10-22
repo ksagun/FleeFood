@@ -1,0 +1,71 @@
+<div class="main-wrapper">
+  <div class="container">
+    <search-bar></search-bar>
+
+    <header>
+      <h3>All Restaurants in {{ " " + removeSeperator(location) }}</h3>
+    </header>
+    <div class="restaurant-wrapper">
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="isLoading$ | async"
+      ></mat-progress-bar>
+
+      <!--Restaurant list-->
+      <ng-container *ngIf="restaurantLists$">
+        <div
+          class="restaurant-list"
+          *ngFor="let list of restaurantLists$ | async"
+        >
+          <a
+            routerLink="{{
+              '/restaurant/' +
+                '/' +
+                list.id +
+                '/' +
+                urlSegmenter(list.business_name)
+            }}"
+          >
+            <mat-card class="food-card">
+              <mat-card-content>
+                <div class="logo">
+                  <img [src]="list.business_logo" alt="" />
+                </div>
+
+                <div class="details">
+                  <p *ngIf="list.business_name" class="ff-label name">
+                    {{
+                      list.business_name +
+                        " - " +
+                        list.municipality +
+                        " " +
+                        list.city
+                    }}
+                  </p>
+
+                  <section>
+                    <span>₱ 29 Delivery fee</span>
+                  </section>
+
+                  <section>
+                    <mat-icon>query_builder</mat-icon>
+                    <span>{{
+                      convertToMinutes(list.duration) + "min - " + list.distance + "km"
+                    }}</span>
+                  </section>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </div>
+      </ng-container>
+
+      <!--If no result-->
+      <ng-container *ngIf="restaurantLists$; let data">
+        <span *ngIf="data.error && data.error === 'no data'">
+          <p>No available restaurant in this location try another one.</p>
+        </span>
+      </ng-container>
+    </div>
+  </div>
+</div>
